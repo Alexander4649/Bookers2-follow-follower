@@ -51,3 +51,6 @@ def create
 
 * コントローラを作成する
 => rails g controller book_comments
+
+* ルーティング設定
+=>resource :comments,only: [:create,:destroy]
