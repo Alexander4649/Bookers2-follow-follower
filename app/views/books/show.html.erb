@@ -14,11 +14,22 @@
           <td><%= link_to book_path do %>
             <%= image_tag @user.get_profile_image, size:"100x100" %><br>
             <% end %>
-            <%#= @user.name %>
-            <%= link_to @user.name,user_path(@user) %>
+            <%= link_to @user.name,user_path(@user) %><%#= @user.name %>
           </td>
-          <td><%#= link_to book_path,@book.title %><%= link_to @book_id.title,book_path %></td>
-          <td><%#= @book.body %><%= @book_id.body %></td>
+          <td><%= link_to @book_id.title,book_path %></td><%#= link_to book_path,@book.title %>
+          <td><%= @book_id.body %></td><%#= @book.body %>
+          <td><% @books.each do |book| %>
+               <% if book.favorited_by?(current_user)%>
+               <%= link_to book_favorites_path(book.id), method: :delete do %>
+              ♥<%= book.favorites.count %>
+               <% end %>
+               <% else %>
+               <%= link_to book_favorites_path(book.id), method: :post do %>
+              ♡<%= book.favorites.count %>
+               <% end %>
+              <% end %>
+            <% end %>
+          </td>
           <% if @book_id.user == current_user %>
           <td><%= link_to 'Edit', edit_book_path, class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
           <td><%= link_to 'Destroy', book_path(@book_id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>

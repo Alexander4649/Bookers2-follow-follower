@@ -5,13 +5,14 @@ class BooksController < ApplicationController
     @book = Book.new
     @book_id = Book.find(params[:id])
     @user = @book_id.user
+    # エラー解除後は下はいらない
+    @books = Book.all
   end
 
   def index
     @book = Book.new
     @user = User.find(current_user.id)
     @books = Book.all
-    
   end
 
   def create
