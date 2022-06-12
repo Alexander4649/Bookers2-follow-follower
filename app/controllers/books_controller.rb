@@ -5,8 +5,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @book_id = Book.find(params[:id])
     @user = @book_id.user
-    # エラー解除後は下はいらない
-    @books = Book.all
+    @book_comment = BookComment.new
   end
 
   def index

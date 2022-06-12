@@ -54,3 +54,5 @@ def create
 
 * ルーティング設定
 =>resource :comments,only: [:create,:destroy]
+
+
